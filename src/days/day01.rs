@@ -3,11 +3,22 @@ use std::fs;
 pub fn solution() {
     let file = fs::read_to_string("input/day1").expect("Unable to open the file");
 
-    let items = file.split("\n");
+    // brute force lol
+    let trimmed_file = file.replace("one", "o1ne")
+        .replace("two", "t2wo")
+        .replace("three", "th3ree")
+        .replace("four", "fo4ur")
+        .replace("five", "fi5ve")
+        .replace("six", "si6x")
+        .replace("seven", "sev7en")
+        .replace("eight", "ei8ght")
+        .replace("nine", "ni9ne");
+
+    let items = trimmed_file.split("\n");
 
     let mut sum_values: Vec<i32> = Vec::new();
 
-    for item in items {
+    for (i, item) in items.enumerate() {
         let first: i32;
         let second: i32;
 
@@ -30,8 +41,8 @@ pub fn solution() {
 
         first = *numbers.first().unwrap();
         second = *numbers.last().unwrap();
-
-        sum_values.push(first * 10 + second);
+        println!("{}) {} - {}{}", i+1, item, first, second);
+        sum_values.push((first * 10) + second);
     }
 
     let mut sum: i32 = 0;
@@ -78,5 +89,32 @@ Tasks:
 4. Combine the two digits into a single number
 5. Add that digit to a list
 6. Iterate and sum the list = Result
+
+---
+
+Part 2:
+
+Your calculation isn't quite right. It looks like some of the digits are actually spelled out with letters: one, two, three, four, five, six, seven, eight, and nine also count as valid "digits".
+
+Equipped with this new information, you now need to find the real first and last digit on each line. For example:
+
+two1nine
+eightwothree
+abcone2threexyz
+xtwone3four
+4nineeightseven2
+zoneight234
+7pqrstsixteen
+
+In this example, the calibration values are 29, 83, 13, 24, 42, 14, and 76. Adding these together produces 281.
+
+What is the sum of all of the calibration values?
+
+---
+
+Notes:
+- We could possibly just scan the entire document and replace the words with their digit equivalent before letting it run?
+- This may not be a good idea as some of the worded numbers overlap and we need to maintain their integrity.
+- Replacing them and putting the number before or after could ruin that. Placing the number in the middle might be the easiest win.
 
 */
