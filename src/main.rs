@@ -1,6 +1,6 @@
 mod days;
-use days::day03;
+use days::day04;
 
 fn main() {
-    day03::solution();
+    day04::solution();
 }

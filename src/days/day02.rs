@@ -1,13 +1,11 @@
 use std::fs;
 
-#[allow(dead_code)]
 pub struct Cube {
     red: i32,
     blue: i32,
     green: i32,
 }
 
-#[allow(dead_code)]
 pub fn solution() {
     let file: String = fs::read_to_string("input/day2").expect("Unable to open the file");
     let games = file.split("\n");
@@ -23,7 +21,6 @@ pub fn solution() {
     println!("{}", power_sum);
 }
 
-#[allow(dead_code)]
 pub fn max_game_cubes(game: &str) -> Cube {
     // discard the "Game N: " portion
     let game: &str = game.split(": ").collect::<Vec<&str>>()[1];

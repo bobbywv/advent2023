@@ -1,6 +1,5 @@
 use std::fs;
 
-#[allow(dead_code)]
 pub fn solution() {
     let file = fs::read_to_string("input/day1").expect("Unable to open the file");
 
